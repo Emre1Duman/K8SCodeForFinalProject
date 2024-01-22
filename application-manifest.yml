@@ -22,4 +22,17 @@ spec:
     rollingUpdate:
       maxUnavailable: 1
       maxSurge: 1
-  
+---
+apiVersion: apps/v1
+kind: Service
+metadata:
+  name: flask-app-service
+spec:
+  selector:
+    matchLabels:
+      app: flask-app
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 5000
+  type: ClusterIP
